@@ -12,20 +12,23 @@ class Node{
         next=NULL;
     }
 };
-Node* deleteFromDLL(Node* head,int x)
+void deleteFromDLL(Node* head,int x)
 {
     if(head==NULL)
     {
-        return head;
+        cout<<"Empty List"<<endl;
+        return;
     }
     Node* previousNode=head;
-    while(previousNode->next!=NULL && previousNode->next->data!=x){
+    while(previousNode!=NULL && previousNode->next->data!=x){
         previousNode=previousNode->next;
+    }
+    if(previousNode==NULL) {
+        cout<<"Node not present in the list"<<endl;
     }
     Node* curNode=previousNode->next;
     Node* nxtNode=curNode->next;
     previousNode->next=nxtNode;
     nxtNode->prev=previousNode;
     delete curNode;
-    return head;
 }
